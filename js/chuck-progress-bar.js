@@ -154,19 +154,34 @@ function drawColTotals(obj) {
 
 
 
-function initKanban() {
+function checkMainCols(todo, done) {
+
+	const headerCols = document.querySelectorAll('.ghx-column-headers .ghx-column');
+	const headers = [...headerCols].map(col => col.querySelector('h2').dataset.tooltip);
+	const hasCols = headers.includes(todo) && headers.includes(done);
+	return hasCols;
+}
+
+
+
+
+function initKanban(config) {
+	const {theme, todo, done} = config;
 	const poolColumn = document.querySelector('#ghx-pool-column');
 	if (poolColumn) {
 		const headerCols = poolColumn.querySelector('.ghx-column-headers');
-		const kanban = getColumns(headerCols);
-		populateKanban(kanban);
-		drawChuckProgressBar(poolColumn, getIssueSummary(kanban), 'rainbow');
-		drawColTotals(kanban);
+		const hasMainCols = checkMainCols(todo, done);
+
+		if (hasMainCols) {
+			const kanban = getColumns(headerCols);
+			populateKanban(kanban);
+			drawChuckProgressBar(poolColumn, getIssueSummary(kanban), theme);
+			drawColTotals(kanban);
+		}
 	}
 }
 
-initKanban();
-initKanban();
+initKanban({theme: 'default', todo: 'To Do', done: 'Done'});
 
 export { 
 	camelcase,
@@ -177,5 +192,6 @@ export {
 	deleteUserComponent,
 	drawChuckProgressBar,
 	getChuckProgressBarTheme,
-	drawColTotals
+	drawColTotals,
+	checkMainCols
 };

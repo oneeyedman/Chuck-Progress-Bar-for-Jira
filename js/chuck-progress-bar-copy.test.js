@@ -8,7 +8,8 @@ import {
 	deleteUserComponent,
 	drawChuckProgressBar,
 	getChuckProgressBarTheme,
-	drawColTotals } from './chuck-progress-bar.js';
+	drawColTotals,
+	checkMainCols } from './chuck-progress-bar.js';
 
 document.body.innerHTML = `
 		<div id="ghx-pool-column">
@@ -243,6 +244,10 @@ describe('Paintint the Chuck Progress bar', () => {
 	});
 });
 
+
+
+
+
 describe('Draw column totals', () => {
 	test('Draw TO DO totals', () => {
 		const kanban = getColumns(headerCols);
@@ -250,5 +255,21 @@ describe('Draw column totals', () => {
 		drawColTotals(kanban);
 		const headerText = document.querySelector(`.ghx-column[data-id="1"] h2`).textContent;
 		expect(headerText).toBe(`To Do (${domToDoIssues})`);
+	});
+});
+
+
+
+
+
+describe('Progress Bar initialisation', () => {
+	test('The kanban board does have a "To Do" and "Done" columns', () => {
+		const hasCols = checkMainCols('To Do', 'Done');
+		expect(hasCols).toBe(true);
+	});
+
+	test('The kanban board  does not have a "To Dos" or "Done" column.', () => {
+		const hasCols = checkMainCols('To Dos', 'Done');
+		expect(hasCols).toBe(false);
 	});
 });
