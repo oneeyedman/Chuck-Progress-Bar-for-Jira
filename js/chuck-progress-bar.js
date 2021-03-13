@@ -87,11 +87,39 @@ function drawChuckProgressBar(container, obj, theme='default') {
 	deleteUserComponent('.chuck-progress-bar');
 	const {done, total} = obj;
 	const percentage = done * 100 / total;
-	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${name}" style="background-color:#f5f4f7;border-radius: 4px; padding: 10px 5px;margin-bottom: 7px;">
-		<h1 class="chuck-progress-bar__title" style="color: #5e6c84;font-size:.85714286em;padding:5px 0 15px 5px;line-height: 1.33333333;text-transform: uppercase;font-weight: 400;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Chuck Progress bar FTW</h1>
-		<div class="chuck-progress-bar__track" style="background-color:#e5e6e7;border-radius: 2px;overflow: hidden;">
-			
-			<div class="chuck-progress-bar__current" style="${bg}border-radius: 2px;box-shadow:0 0 5px rgba(0,0,0,.2);height:30px;width:${percentage}%"></div>
+	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${name}">
+		<style>
+			.chuck-progress-bar {
+				background-color: #f5f4f7;
+				border-radius: 4px; 
+				padding: 10px 5px;
+				margin-bottom: 7px;
+			}
+			.chuck-progress-bar__title {
+				color: #5e6c84;
+				font-size: .85714286em;
+				padding:5px 0 15px 5px;
+				line-height: 1.33333333;
+				text-transform: uppercase;
+				font-weight: 400;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.chuck-progress-bar__track {
+				background-color: #e5e6e7;
+				border-radius: 2px;
+				overflow: hidden;
+			}
+			.chuck-progress-bar__current {
+				border-radius: 2px;
+				box-shadow: 0 0 5px rgba(0,0,0,.2);
+				height: 30px;
+			}
+		</style>
+		<h1 class="chuck-progress-bar__title">Chuck Progress bar FTW</h1>
+		<div class="chuck-progress-bar__track">
+			<div class="chuck-progress-bar__current" style="${bg}width:${percentage}%"></div>
 		</div>
 	</section>`;
 	container.insertAdjacentHTML('afterbegin', progressBar);
@@ -110,6 +138,17 @@ function deleteUserComponent(selector) {
 
 
 
+function drawColTotals(obj) {
+	for (const prop in obj) {
+		const header = document.querySelector(`.ghx-column[data-id="${obj[prop].dataId}"] h2`);
+		const label = header.dataset.tooltip;
+		header.textContent = `${label} (${obj[prop].issues})`;
+	}
+}
+
+
+
+
 function initKanban() {
 	const poolColumn = document.querySelector('#ghx-pool-column');
 	if (poolColumn) {
@@ -122,9 +161,7 @@ function initKanban() {
 		// Write progressbar
 		drawChuckProgressBar(poolColumn, getIssueSummary(kanban), 'rainbow');
 		// write column totals
-		console.group('TASKS');
-		console.log(`${pending}/${total} \nDONE: ???`);
-		console.groupEnd();
+		drawColTotals(kanban);
 	}
 }
 
@@ -138,4 +175,6 @@ export {
 	getIssueSummary,
 	deleteUserComponent,
 	drawChuckProgressBar,
-	getChuckProgressBarTheme };
+	getChuckProgressBarTheme,
+	drawColTotals
+};

@@ -7,7 +7,8 @@ import {
 	getIssueSummary,
 	deleteUserComponent,
 	drawChuckProgressBar,
-	getChuckProgressBarTheme } from './chuck-progress-bar.js';
+	getChuckProgressBarTheme,
+	drawColTotals } from './chuck-progress-bar.js';
 
 document.body.innerHTML = `
 		<div id="ghx-pool-column">
@@ -264,5 +265,14 @@ describe('Paintint the Chuck Progress bar', () => {
 		const theme = getChuckProgressBarTheme(' ');
 		expect(theme.name).toBe('default');
 	});
+});
 
+describe('Draw column totals', () => {
+	test('Draw TO DO totals', () => {
+		const kanban = getColumns(headerCols);
+		populateKanban(kanban);
+		drawColTotals(kanban);
+		const headerText = document.querySelector(`.ghx-column[data-id="1"] h2`).textContent;
+		expect(headerText).toBe(`To Do (${domToDoIssues})`);
+	});
 });
