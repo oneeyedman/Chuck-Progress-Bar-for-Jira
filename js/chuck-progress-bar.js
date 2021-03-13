@@ -112,14 +112,22 @@ function drawChuckProgressBar(container, obj, theme='default') {
 				overflow: hidden;
 			}
 			.chuck-progress-bar__current {
+				background-color:#0052cc;
 				border-radius: 2px;
 				box-shadow: 0 0 5px rgba(0,0,0,.2);
 				height: 30px;
 			}
+
+			.chuck-progress-bar--rainbow .chuck-progress-bar__current {
+				background: linear-gradient(to right, red, orange, yellow, green, blue, purple);
+			}
+			.chuck-progress-bar--pride .chuck-progress-bar__current {
+				background: linear-gradient(to right, red 0%, red 16.66666666%, orange 16.66666666%, orange 33.33333333%, yellow 33.33333333%, yellow 50%, green 50%, green 66.66666666%, blue 66.66666666%, blue 83.33333333%, purple 83.33333333%, purple 100%);
+			}
 		</style>
 		<h1 class="chuck-progress-bar__title">Chuck Progress bar FTW</h1>
 		<div class="chuck-progress-bar__track">
-			<div class="chuck-progress-bar__current" style="${bg}width:${percentage}%"></div>
+			<div class="chuck-progress-bar__current" style="width:${percentage}%"></div>
 		</div>
 	</section>`;
 	container.insertAdjacentHTML('afterbegin', progressBar);
