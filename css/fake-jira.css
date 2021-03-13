@@ -1,10 +1,11 @@
 body {
   font-family: verdana, sans-serif;
   margin: 3em;
+  font-size: 12px;
 }
 h1, 
 h2 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   text-transform: uppercase;
   margin: 0;
@@ -20,7 +21,7 @@ h2 {
   column-gap: 10px;
 }
 .ghx-column-headers .ghx-column {
-  background-color: gold;
+  background-color:#f5f4f7;
   padding: 10px 5px;
 }
 
@@ -34,13 +35,16 @@ h2 {
   column-gap: 10px;
 }
 .ghx-column { 
+  background-color:#f5f4f7;
   padding: 5px;
 }
 
 
 /* ISSUE */
 .ghx-issue { 
-  border: 1px solid pink;
+  border: 1px solid deeppink;
+  background-color: white;
+
   padding: 5px;
 }
 .ghx-issue + .ghx-issue {
