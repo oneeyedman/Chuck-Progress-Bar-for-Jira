@@ -64,19 +64,30 @@ function getIssueSummary(obj) {
 
 
 
-function drawChuckProgressBar(container, obj, theme='default') {
+function getChuckProgressBarTheme(theme) {
+	theme = theme.trim().toLocaleLowerCase();
 	const themes = {
 		'default': 'background-color:#0052cc;',
 		'rainbow': 'background: linear-gradient(to right, red, orange, yellow, green, blue, purple);',
 		'pride': 'background: linear-gradient(to right, red 0%, red 16.66666666%, orange 16.66666666%, orange 33.33333333%, yellow 33.33333333%, yellow 50%, green 50%, green 66.66666666%, blue 66.66666666%, blue 83.33333333%, purple 83.33333333%, purple 100%);'
 	};
-	const bg = themes[theme] || themes['default'];
+	const userTheme = theme && themes[theme] ? theme : 'default' ;
 
+	return {
+		name: userTheme,
+		bg: themes[userTheme]
+	};
+}
+
+
+
+
+function drawChuckProgressBar(container, obj, theme='default') {
+	const {name, bg} = getChuckProgressBarTheme(theme);
 	deleteUserComponent('.chuck-progress-bar');
-	
 	const {done, total} = obj;
 	const percentage = done * 100 / total;
-	const progressBar = `<section class="chuck-progress-bar" style="background-color:#f5f4f7;border-radius: 4px; padding: 10px 5px;margin-bottom: 7px;">
+	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${name}" style="background-color:#f5f4f7;border-radius: 4px; padding: 10px 5px;margin-bottom: 7px;">
 		<h1 class="chuck-progress-bar__title" style="color: #5e6c84;font-size:.85714286em;padding:5px 0 15px 5px;line-height: 1.33333333;text-transform: uppercase;font-weight: 400;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">Chuck Progress bar FTW</h1>
 		<div class="chuck-progress-bar__track" style="background-color:#e5e6e7;border-radius: 2px;overflow: hidden;">
 			
@@ -109,7 +120,7 @@ function initKanban() {
 		const {pending, total} = getIssueSummary(kanban);
 
 		// Write progressbar
-		drawChuckProgressBar(poolColumn, getIssueSummary(kanban), `prides`);
+		drawChuckProgressBar(poolColumn, getIssueSummary(kanban), 'rainbow');
 		// write column totals
 		console.group('TASKS');
 		console.log(`${pending}/${total} \nDONE: ???`);
@@ -126,4 +137,5 @@ export {
 	getTotalIssues,
 	getIssueSummary,
 	deleteUserComponent,
-	drawChuckProgressBar };
+	drawChuckProgressBar,
+	getChuckProgressBarTheme };

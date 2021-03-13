@@ -6,7 +6,8 @@ import {
 	getTotalIssues,
 	getIssueSummary,
 	deleteUserComponent,
-	drawChuckProgressBar } from './chuck-progress-bar.js';
+	drawChuckProgressBar,
+	getChuckProgressBarTheme } from './chuck-progress-bar.js';
 
 document.body.innerHTML = `
 		<div id="ghx-pool-column">
@@ -214,5 +215,54 @@ describe('Paintint the Chuck Progress bar', () => {
 		const cpb = document.querySelectorAll('.chuck-progress-bar');
 		expect(cpb.length).toBe(1);
 	});
-	
+
+	test('Get a theme object', () => {
+		const theme = getChuckProgressBarTheme('rainbow');
+		expect(theme).toEqual(expect.objectContaining({
+			name: expect.any(String),
+			bg: expect.any(String)
+		}));
+	});
+
+	test('Get a rainbow theme object', () => {
+		const theme = getChuckProgressBarTheme('rainbow');
+		expect(theme).toEqual(expect.objectContaining({
+			name: 'rainbow',
+			bg: 'background: linear-gradient(to right, red, orange, yellow, green, blue, purple);'
+		}));
+	});
+
+	test('Get a default theme object', () => {
+		const theme = getChuckProgressBarTheme('horde');
+		expect(theme).toEqual(expect.objectContaining({
+			name: 'default',
+			bg: 'background-color:#0052cc;'
+		}));
+	});
+
+	test('Get a theme name', () => {
+		const theme = getChuckProgressBarTheme('rainbow');
+		expect(theme.name).toBe('rainbow');
+	});
+
+	test('Get a theme name in lower case', () => {
+		const theme = getChuckProgressBarTheme('Rainbow');
+		expect(theme.name).toBe('rainbow');
+	});
+
+	test('Get the default theme (no args)', () => {
+		const theme = getChuckProgressBarTheme('');
+		expect(theme.name).toBe('default');
+	});
+
+	test('Get the default theme (empty args)', () => {
+		const theme = getChuckProgressBarTheme('');
+		expect(theme.name).toBe('default');
+	});
+
+	test('Get the default theme (empty space)', () => {
+		const theme = getChuckProgressBarTheme(' ');
+		expect(theme.name).toBe('default');
+	});
+
 });
