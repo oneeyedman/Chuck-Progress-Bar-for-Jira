@@ -181,7 +181,7 @@ function initKanban(config) {
 	}
 }
 
-initKanban({theme: 'default', todo: 'To Do', done: 'Done'});
+initKanban({theme: 'rainbow', todo: 'To Do', done: 'Done'});
 
 export { 
 	camelcase,
