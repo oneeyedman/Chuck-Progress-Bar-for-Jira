@@ -20,7 +20,7 @@ function getColumns(list) {
 	cols.forEach(col => {
 		const element = col.querySelector('h2');
 		const dataId = col.dataset.id;
-		const title = col.querySelector('h2').textContent;
+		const title = col.querySelector('h2').dataset.tooltip;
 		result[camelcase(title)] = {el: element, dataId};
 	});
 	return result;
@@ -66,28 +66,24 @@ function getIssueSummary(obj) {
 
 function getChuckProgressBarTheme(theme) {
 	theme = theme.trim().toLocaleLowerCase();
-	const themes = {
-		'default': 'background-color:#0052cc;',
-		'rainbow': 'background: linear-gradient(to right, red, orange, yellow, green, blue, purple);',
-		'pride': 'background: linear-gradient(to right, red 0%, red 16.66666666%, orange 16.66666666%, orange 33.33333333%, yellow 33.33333333%, yellow 50%, green 50%, green 66.66666666%, blue 66.66666666%, blue 83.33333333%, purple 83.33333333%, purple 100%);'
-	};
-	const userTheme = theme && themes[theme] ? theme : 'default' ;
+	const themes = [
+		'rainbow',
+		'pride'
+	];
+	const userTheme = theme && themes.includes(theme) ? theme : 'default' ;
 
-	return {
-		name: userTheme,
-		bg: themes[userTheme]
-	};
+	return userTheme;
 }
 
 
 
 
 function drawChuckProgressBar(container, obj, theme='default') {
-	const {name, bg} = getChuckProgressBarTheme(theme);
+	const userTheme = getChuckProgressBarTheme(theme);
 	deleteUserComponent('.chuck-progress-bar');
 	const {done, total} = obj;
 	const percentage = done * 100 / total;
-	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${name}">
+	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${userTheme}">
 		<style>
 			.chuck-progress-bar {
 				background-color: #f5f4f7;
@@ -98,7 +94,8 @@ function drawChuckProgressBar(container, obj, theme='default') {
 			.chuck-progress-bar__title {
 				color: #5e6c84;
 				font-size: .85714286em;
-				padding:5px 0 15px 5px;
+				margin: 0;
+				padding: 5px 0 15px 5px;
 				line-height: 1.33333333;
 				text-transform: uppercase;
 				font-weight: 400;
@@ -162,17 +159,13 @@ function initKanban() {
 	if (poolColumn) {
 		const headerCols = poolColumn.querySelector('.ghx-column-headers');
 		const kanban = getColumns(headerCols);
-
 		populateKanban(kanban);
-		const {pending, total} = getIssueSummary(kanban);
-
-		// Write progressbar
 		drawChuckProgressBar(poolColumn, getIssueSummary(kanban), 'rainbow');
-		// write column totals
 		drawColTotals(kanban);
 	}
 }
 
+initKanban();
 initKanban();
 
 export { 
