@@ -2,6 +2,13 @@ body {
   font-family: verdana, sans-serif;
   margin: 3em;
 }
+h1, 
+h2 {
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+}
 
 /* POOL */
 #ghx-pool-column {}
@@ -12,14 +19,8 @@ body {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
 }
-.ghx-column-header {
+.ghx-column-headers .ghx-column {
   background-color: gold;
-}
-.ghx-column-header h2 {
-  font-size: 14px;
-  font-weight: normal;
-  text-transform: uppercase;
-  margin: 0;
   padding: 10px 5px;
 }
 
