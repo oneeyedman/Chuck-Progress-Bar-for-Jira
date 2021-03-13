@@ -1,0 +1,47 @@
+body {
+  font-family: verdana, sans-serif;
+  margin: 3em;
+}
+
+/* POOL */
+#ghx-pool-column {}
+
+/* HEADERS */
+.ghx-column-headers {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 10px;
+}
+.ghx-column-header {
+  background-color: gold;
+}
+.ghx-column-header h2 {
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 10px 5px;
+}
+
+/* COLUMNS */
+.ghx-columns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 10px;
+}
+.ghx-column { 
+  padding: 5px;
+}
+
+
+/* ISSUE */
+.ghx-issue { 
+  border: 1px solid pink;
+  padding: 5px;
+}
+.ghx-issue + .ghx-issue {
+  margin-top: 5px;
+}
