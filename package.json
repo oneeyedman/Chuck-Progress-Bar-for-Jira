@@ -1,0 +1,25 @@
+{
+  "name": "Chuck-Progress-Bar-for-Jira",
+  "version": "1.0.0",
+  "description": "De primeras va a ser una Barra de progreso para mi tablero kanban de Jira. Luego vamos viendo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneeyedman/Chuck-Progress-Bar-for-Jira.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oneeyedman/Chuck-Progress-Bar-for-Jira/issues"
+  },
+  "homepage": "https://github.com/oneeyedman/Chuck-Progress-Bar-for-Jira#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^25.3.0"
+  }
+}

@@ -1,5 +1,25 @@
 'use strict';
 
+const kanban = {
+	toDo: {},
+	inProgress: {},
+	blocked: {},
+	mrPending: {},
+	done: {}
+};
+
+function camelcase(str) {
+	const parts = str.toLowerCase().split(' ');
+	for (let i = 0; i < parts.length; i++) {
+		if (i > 0) {
+			const letters = parts[i].split('');
+			letters[0] = letters[0].toUpperCase();
+			parts[i] = letters.join('');
+		}
+	}
+	return parts.join('');
+}
+
 function getTitles(list) {
 	const cols = list.querySelectorAll('.ghx-column');
 	const result = [...cols].map(header => {
@@ -69,3 +89,5 @@ function getTotalIssues() {
 }
 
 getTotalIssues();
+
+export { camelcase };
