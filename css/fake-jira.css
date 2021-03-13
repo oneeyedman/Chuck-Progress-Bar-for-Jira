@@ -5,10 +5,11 @@ body {
 }
 h1, 
 h2 {
-  font-size: 12px;
+  font-size: 12px !important;
   font-weight: normal;
   text-transform: uppercase;
   margin: 0;
+  color: #5e6c84;
 }
 
 /* POOL */
