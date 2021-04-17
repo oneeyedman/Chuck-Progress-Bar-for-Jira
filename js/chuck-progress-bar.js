@@ -78,21 +78,39 @@ function getChuckProgressBarTheme(theme) {
 
 
 
+
+function getEmoji(pending, done) {
+	const result = pending >= done ? '💩' : '🦄';
+	return result;
+}
+
+
+
+
+
+function getExtraTooltipClass(per) {
+	return per >= 50 ? 'tooltip--max' : '';
+}
+
+
+
+
+
 function drawChuckProgressBar(container, obj, theme='default') {
 	const userTheme = getChuckProgressBarTheme(theme);
 	deleteUserComponent('.chuck-progress-bar');
 	const {done, total} = obj;
 	const pending = total - done;
-	let percentage = done * 100 / total;
-	const emoji = pending >= done ? '💩' : '🦄';
-	const tooltip = `<div class="tooltip ${percentage <= 15 ? 'tooltip--alt' : ''}">
+	const percentage = done * 100 / total;
+	const emoji = getEmoji(pending, done);
+	const tooltip = `<div class="tooltip ${getExtraTooltipClass(percentage)}">
 		<div class="tooltip__content">Estado: ${pending}/${done}</div>
 	</div>`;
 	const progressBar = `<section class="chuck-progress-bar chuck-progress-bar--${userTheme}">
 		<style>
 			.chuck-progress-bar {
 				background-color: #f5f4f7;
-				border-radius: 4px; 
+				border-radius: 4px;
 				padding: 10px 5px;
 				margin-bottom: 7px;
 			}
@@ -126,14 +144,14 @@ function drawChuckProgressBar(container, obj, theme='default') {
 			.chuck-progress-bar--pride .chuck-progress-bar__current {
 				background: linear-gradient(to right, red 0%, red 16.66666666%, orange 16.66666666%, orange 33.33333333%, yellow 33.33333333%, yellow 50%, green 50%, green 66.66666666%, blue 66.66666666%, blue 83.33333333%, purple 83.33333333%, purple 100%);
 			}
-			
+
 			.tooltip {
 				background-color: white;
 				border-radius: 2px;
 				position: absolute;
 				left: 100%;
 				bottom: 100%;
-				transform: translate(-100%, 0);
+				transform: translate(-35px, 0);
 				padding: 14px 10px;
 				box-shadow: 0 1px 8px 0 rgba(0,0,0,0.15);
 				font-size: 14px;
@@ -149,19 +167,20 @@ function drawChuckProgressBar(container, obj, theme='default') {
 				position: absolute;
 				background-color: white;
 				border-radius: 2px;
-				transform: translateY(-65%) rotate(45deg);
-				right: 10px;
+				transform: translate(30px,-65%) rotate(45deg);
+				right: 100%;
 				top: 100%;
 				width: 15px;
 				height: 15px;
 				z-index:1;
 			}
-			.tooltip--alt {
-				transform: translate(-35px, 0);
+			.tooltip--max {
+				transform: translate(-100%, 0);
 			}
-			.tooltip--alt::before {
-				transform: translate(30px,-65%) rotate(45deg);
-				right: 100%;
+			.tooltip--max::before {
+
+				transform: translateY(-65%) rotate(45deg);
+				right: 10px;
 			}
 			.tooltip__content {
 				position: relative;
@@ -275,5 +294,7 @@ export {
 	drawChuckProgressBar,
 	getChuckProgressBarTheme,
 	drawColTotals,
-	checkMainCols
+	checkMainCols,
+	getEmoji,
+	getExtraTooltipClass
 };

@@ -9,7 +9,9 @@ import {
 	drawChuckProgressBar,
 	getChuckProgressBarTheme,
 	drawColTotals,
-	checkMainCols} from './chuck-progress-bar.js';
+	checkMainCols,
+	getEmoji,
+	getExtraTooltipClass} from './chuck-progress-bar.js';
 
 document.body.innerHTML = `
 		<div id="ghx-pool-column">
@@ -276,5 +278,33 @@ describe('Progress Bar initialisation', () => {
 	test('The kanban board  does not have a "To Dos" or "Done" column.', () => {
 		const hasCols = checkMainCols('To Dos', 'Done');
 		expect(hasCols).toBe(false);
+	});
+});
+
+
+
+
+
+describe('Tooltip stuff', () => {
+	test('The tooltip gets an 💩 emoji because 10/7', () => {
+		const poop = '💩';
+		expect(getEmoji(10,7)).toBe(poop);
+	});
+
+	test('The tooltip gets an 🦄 emoji because 7/10', () => {
+		const unicorn = '🦄';
+		expect(getEmoji(7, 10)).toBe(unicorn);
+	});
+
+	test('The tooltip gets a special class when percentage is equal or greater than 50%', () => {
+		const per = 67;
+		const result = 'tooltip--max';
+		expect(getExtraTooltipClass(per)).toBe(result);
+	});
+
+	test('The tooltip doesn\'t get a special class when percentage is lower than 50%', () => {
+		const per = 45;
+		const result = '';
+		expect(getExtraTooltipClass(per)).toBe(result);
 	});
 });
