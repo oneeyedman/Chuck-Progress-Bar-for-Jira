@@ -13,6 +13,9 @@ h2 {
 }
 
 /* POOL */
+#ghx-work {
+  overflow: hidden !important;
+}
 #ghx-pool-column {}
 
 /* HEADERS */

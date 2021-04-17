@@ -9,53 +9,67 @@
   <link rel="stylesheet" href="css/fake-jira.css">
 </head>
 <body>
-  <div id="ghx-pool-column">
-    <div class="ghx-column-headers">
-      <div class="ghx-column" data-id="1">
-        <h2 data-tooltip="To Do">To do</h2>
+  <div id="ghx-work" style="height: 300px;">
+    <div id="ghx-pool-column">
+      <div class="ghx-column-headers">
+        <div class="ghx-column" data-id="1">
+          <h2 data-tooltip="To Do">To do</h2>
+        </div>
+        <div class="ghx-column" data-id="2">
+          <h2 data-tooltip="In Progress">In Progress</h2>
+        </div>
+        <div class="ghx-column" data-id="3">
+          <h2 data-tooltip="Blocked">Blocked</h2>
+        </div>
+        <div class="ghx-column" data-id="4">
+          <h2 data-tooltip="MR Pending">MR Pending</h2>
+        </div>
+        <div class="ghx-column" data-id="5">
+          <h2 data-tooltip="Done">Done</h2>
+        </div>
       </div>
-      <div class="ghx-column" data-id="2">
-        <h2 data-tooltip="In Progress">In Progress</h2>
-      </div>
-      <div class="ghx-column" data-id="3">
-        <h2 data-tooltip="Blocked">Blocked</h2>
-      </div>
-      <div class="ghx-column" data-id="4">
-        <h2 data-tooltip="MR Pending">MR Pending</h2>
-      </div>
-      <div class="ghx-column" data-id="5">
-        <h2 data-tooltip="Done">Done</h2>
-      </div>
+      <ul class="ghx-columns">
+        <li class="ghx-column" data-column-id="1">
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+        </li>
+        <li class="ghx-column" data-column-id="2">
+          <div class="ghx-issue">Issue 1</div>
+          
+        </li>
+        <li class="ghx-column" data-column-id="3">
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+        </li>
+        <li class="ghx-column" data-column-id="4">
+        </li>
+        <li class="ghx-column" data-column-id="5">
+          <div class="ghx-issue">Issue 1</div>
+          <div class="ghx-issue">Issue 2</div>
+          <div class="ghx-issue">Issue 3</div>
+          <div class="ghx-issue">Issue 4</div>
+          <div class="ghx-issue">Issue 5</div>
+          <div class="ghx-issue">Issue 6</div>
+          <div class="ghx-issue">Issue 7</div>
+          <div class="ghx-issue">Issue 8</div>
+          <div class="ghx-issue">Issue 9</div>
+          <div class="ghx-issue">Issue 10</div>
+        </li>
+      </ul>
     </div>
-    <ul class="ghx-columns">
-      <li class="ghx-column" data-column-id="1">
-        <div class="ghx-issue">Issue 1</div>
-        <div class="ghx-issue">Issue 2</div>
-        <div class="ghx-issue">Issue 3</div>
-      </li>
-      <li class="ghx-column" data-column-id="2">
-        <div class="ghx-issue">Issue 1</div>
-        
-      </li>
-      <li class="ghx-column" data-column-id="3">
-        <div class="ghx-issue">Issue 1</div>
-        <div class="ghx-issue">Issue 2</div>
-      </li>
-      <li class="ghx-column" data-column-id="4">
-      </li>
-      <li class="ghx-column" data-column-id="5">
-        <div class="ghx-issue">Issue 1</div>
-        <div class="ghx-issue">Issue 2</div>
-        <div class="ghx-issue">Issue 3</div>
-        <div class="ghx-issue">Issue 4</div>
-        <div class="ghx-issue">Issue 5</div>
-        <div class="ghx-issue">Issue 6</div>
-        <div class="ghx-issue">Issue 7</div>
-        <div class="ghx-issue">Issue 8</div>
-        <div class="ghx-issue">Issue 9</div>
-        <div class="ghx-issue">Issue 10</div>
-      </li>
-    </ul>
   </div>
   <script src="js/chuck-progress-bar.js" type="module"></script>
 </body>

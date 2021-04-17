@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { 
+import {
 	camelcase,
 	getColumns,
 	populateKanban,
@@ -9,7 +9,7 @@ import {
 	drawChuckProgressBar,
 	getChuckProgressBarTheme,
 	drawColTotals,
-	checkMainCols } from './chuck-progress-bar.js';
+	checkMainCols} from './chuck-progress-bar.js';
 
 document.body.innerHTML = `
 		<div id="ghx-pool-column">
@@ -265,6 +265,11 @@ describe('Draw column totals', () => {
 describe('Progress Bar initialisation', () => {
 	test('The kanban board does have a "To Do" and "Done" columns', () => {
 		const hasCols = checkMainCols('To Do', 'Done');
+		expect(hasCols).toBe(true);
+	});
+
+	test('Column detector is case insensitive', () => {
+		const hasCols = checkMainCols('To Do', 'DONE');
 		expect(hasCols).toBe(true);
 	});
 

@@ -1,5 +1,5 @@
 {
-  "name": "Chuck-Progress-Bar-for-Jira",
+  "name": "chuck-progress-bar-for-jira",
   "version": "1.0.0",
   "description": "De primeras va a ser una Barra de progreso para mi tablero kanban de Jira. Luego vamos viendo.",
   "main": "index.js",
